@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "kind": "airtable",
+  "block_version": "0.1.0",
+  "maintained_by": "HackInvent",
+  "source": {
+    "algorithm": "block-source-v1",
+    "sha256": "04e027b252b36f95dbd7984d1acb03e6aba049c3230c9085f2c6601a6e48ab4f"
+  },
+  "bloxsmith_compatibility": [
+    "1.0.9"
+  ],
+  "tested_with_bloxsmith": "1.0.9",
+  "validations": [
+    {
+      "bloxsmith_version": "1.0.9",
+      "framework_commit": "f1a87f6369d2acfb8be41d23ea849384cd461c86",
+      "framework_source_sha256": "66e36a13fd9a23a0a0576ec81552d6e479671db6db9b8692cc7486c5aac4f3b8",
+      "tested_at": "2026-10-10T20:36:03.488263+00:00",
+      "status": "passed",
+      "installation_mode": "bundled",
+      "suite_paths": [
+        "tests/F5.01_airtable.py",
+        "tests/F5.02_airtable_runtime.py",
+        "tests/F8.01_airtable_ui.py"
+      ],
+      "suite_count": 3,
+      "report_sha256": "60991017dad9c36dfb45c4765d70d5c2e47af1d2d866a0a74b9b7679f819d652"
+    }
+  ]
+}

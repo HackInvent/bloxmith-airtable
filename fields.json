@@ -1,0 +1,189 @@
+[
+  {
+    "key": "enabled",
+    "type": "boolean",
+    "label": "Enable remote access",
+    "help": "Off by default. While off, no request reaches Airtable and the wallet is never read."
+  },
+  {
+    "key": "secret_ref",
+    "label": "Access token secret",
+    "placeholder": "secret://workspace/airtable",
+    "help": "Wallet reference holding an Airtable personal access token, or JSON with token. Never the token itself."
+  },
+  {
+    "key": "base_id",
+    "label": "Base ID",
+    "placeholder": "appA1b2C3d4E5f6G7",
+    "help": "The app… ID from the base URL. Each node works on this one base only."
+  },
+  {
+    "key": "table",
+    "label": "Table",
+    "placeholder": "Leads",
+    "help": "Default table name or tbl… ID. A request may name another table of the same base."
+  },
+  {
+    "key": "view",
+    "label": "View",
+    "placeholder": "Grid view",
+    "help": "Optional default view name or viw… ID for list_records: its filters and sort apply."
+  },
+  {
+    "key": "operation",
+    "type": "select",
+    "options": [
+      "list_records",
+      "get_record",
+      "create_records",
+      "update_records",
+      "upsert_records",
+      "delete_records"
+    ],
+    "label": "Default operation",
+    "help": "Used when a request gives no operation. Write operations need Allow writes."
+  },
+  {
+    "key": "allowed_operations",
+    "type": "json",
+    "rows": 2,
+    "label": "Operations a request may choose",
+    "help": "JSON array among [\"list_records\", \"get_record\", \"create_records\", \"update_records\", \"upsert_records\", \"delete_records\"]. The default operation is always allowed."
+  },
+  {
+    "key": "read_limit",
+    "type": "integer",
+    "min": 1,
+    "max": 10000,
+    "label": "Records per list (max)",
+    "help": "Upper bound for one list_records; a request max_records can only lower it."
+  },
+  {
+    "key": "allow_writes",
+    "type": "boolean",
+    "label": "Allow writes",
+    "help": "Off by default. Required for create_records, update_records, upsert_records and delete_records."
+  },
+  {
+    "key": "typecast",
+    "type": "boolean",
+    "group": "write",
+    "label": "Typecast values",
+    "help": "Let Airtable convert text to the field type and create missing select options. Off keeps values strict."
+  },
+  {
+    "key": "fields_to_merge_on",
+    "type": "json",
+    "rows": 2,
+    "group": "write",
+    "label": "Upsert merge fields",
+    "help": "JSON array of 1-3 field names that identify a record for upsert_records, for example [\"Email\"]. A request may give its own."
+  },
+  {
+    "key": "max_write_records",
+    "type": "integer",
+    "min": 1,
+    "max": 1000,
+    "group": "write",
+    "label": "Records per write (max)",
+    "help": "Larger requests are refused before any request. Records are sent in batches of 10."
+  },
+  {
+    "key": "allow_delete",
+    "type": "boolean",
+    "group": "write",
+    "label": "Allow delete_records",
+    "help": "Separate switch for deleting records by ID. Treat a deletion as final."
+  },
+  {
+    "key": "page_size",
+    "type": "integer",
+    "min": 1,
+    "max": 100,
+    "advanced": true,
+    "label": "Records per page",
+    "help": "pageSize sent to Airtable, at most 100. A request may lower it."
+  },
+  {
+    "key": "max_pages",
+    "type": "integer",
+    "min": 1,
+    "max": 100,
+    "advanced": true,
+    "label": "Pages per list (max)",
+    "help": "Pages per list_records; when reached, the result gives offset to continue."
+  },
+  {
+    "key": "return_fields_by_field_id",
+    "type": "boolean",
+    "advanced": true,
+    "label": "Fields by ID",
+    "help": "Return fields keyed by fld… IDs instead of names, so renaming a field does not break a workflow."
+  },
+  {
+    "key": "timeout_sec",
+    "type": "integer",
+    "min": 5,
+    "max": 300,
+    "advanced": true,
+    "label": "Operation deadline (s)",
+    "help": "Total time for one request, pages, batches, pacing and retries included."
+  },
+  {
+    "key": "max_requests_per_sec",
+    "type": "integer",
+    "min": 1,
+    "max": 5,
+    "advanced": true,
+    "label": "Requests per second (max)",
+    "help": "Pacing per base for this process. Airtable allows 5 requests per second per base."
+  },
+  {
+    "key": "max_retries",
+    "type": "integer",
+    "min": 0,
+    "max": 5,
+    "advanced": true,
+    "label": "Retries",
+    "help": "Reads retry after HTTP 429, 5xx or a lost connection; writes only after HTTP 429."
+  },
+  {
+    "key": "max_retry_wait_sec",
+    "type": "integer",
+    "min": 1,
+    "max": 120,
+    "advanced": true,
+    "label": "Longest retry wait (s)",
+    "help": "A Retry-After above this value returns rate_limited instead of waiting. Without Retry-After, Airtable asks for 30 s."
+  },
+  {
+    "key": "max_request_bytes",
+    "type": "integer",
+    "min": 1024,
+    "max": 8388608,
+    "advanced": true,
+    "label": "Request size limit (bytes)",
+    "help": "Bound for the incoming request and for each JSON body sent to Airtable."
+  },
+  {
+    "key": "max_response_bytes",
+    "type": "integer",
+    "min": 65536,
+    "max": 33554432,
+    "advanced": true,
+    "label": "Response size limit (bytes)",
+    "help": "Larger Airtable responses are refused as protocol errors."
+  },
+  {
+    "key": "api_base_url",
+    "advanced": true,
+    "label": "Airtable API origin",
+    "help": "Keep https://api.airtable.com. Another origin receives the token; plain HTTP only for a loopback test host."
+  },
+  {
+    "key": "ca_file",
+    "advanced": true,
+    "label": "Custom CA file",
+    "help": "Optional absolute PEM file for a privately signed HTTPS origin. TLS verification cannot be disabled."
+  }
+]
